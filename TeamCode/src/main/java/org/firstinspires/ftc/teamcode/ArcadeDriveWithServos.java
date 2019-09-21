@@ -1,6 +1,6 @@
 /**
 ----------------------------------------------------------------------------------------------------
-Name: ArcadeDrive
+Name: ArcadeDriveWithServos
 Purpose: This program creates an arcade drive and adds servo control these servos control
  the robots platform locking mechanism
 

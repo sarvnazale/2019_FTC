@@ -1,3 +1,17 @@
+/**
+ ----------------------------------------------------------------------------------------------------
+ Name: TankDrive
+ Purpose: This program creates an tank drive for the robot
+
+
+ Author: Baghbanbashi, Parham
+ email: parhambagh@gmail.com
+
+ Date: 09/19/2019
+ Version: 1.1.1
+ ----------------------------------------------------------------------------------------------------
+ */
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
