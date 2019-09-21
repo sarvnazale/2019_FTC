@@ -52,7 +52,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
-@Disabled
+//@Disabled
 public class ArcadeDrive extends OpMode
 {
     // Declare OpMode members.
@@ -74,20 +74,20 @@ public class ArcadeDrive extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        left1  = hardwareMap.get(DcMotor.class, "left1");
-        left2  = hardwareMap.get(DcMotor.class, "left2");
-        right1 = hardwareMap.get(DcMotor.class, "right1");
-        right2 = hardwareMap.get(DcMotor.class, "right2");
+        left1  = hardwareMap.get(DcMotor.class, "m1");
+        left2  = hardwareMap.get(DcMotor.class, "m4");
+        right1 = hardwareMap.get(DcMotor.class, "m2");
+        right2 = hardwareMap.get(DcMotor.class, "m3");
         s1 = hardwareMap.get(Servo.class, "s1");
         s2 = hardwareMap.get(Servo.class, "s2");
 
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
-        left1.setDirection(DcMotor.Direction.FORWARD);
-        right1.setDirection(DcMotor.Direction.REVERSE);
-        left2.setDirection(DcMotor.Direction.FORWARD);
-        right2.setDirection(DcMotor.Direction.REVERSE);
+        right1.setDirection(DcMotor.Direction.FORWARD);
+        left1.setDirection(DcMotor.Direction.REVERSE);
+        right2.setDirection(DcMotor.Direction.FORWARD);
+        left2.setDirection(DcMotor.Direction.REVERSE);
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
@@ -123,7 +123,7 @@ public class ArcadeDrive extends OpMode
         // POV Mode uses left stick to go forward, and right stick to turn.
         // - This uses basic math to combine motions and is easier to drive straight.
         double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.left_stick_x;
+        double turn  =  gamepad1.right_stick_x;
         leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
         rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
@@ -138,25 +138,18 @@ public class ArcadeDrive extends OpMode
         left2.setPower(leftPower);
         right2.setPower(rightPower);
 
-        // Show the elapsed game time and wheel power.
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
 
-        if(gamepad1.y)
-        {
-            s1.setPosition(0);
-            s2.setPosition(0);
 
-        }
-        else if(gamepad1.b)
+
+        if(gamepad1.right_bumper)
         {
-            s1.setPosition(0.5);
-            s2.setPosition(0.5);
+            s1.setPosition(1.0);
+            s2.setPosition(-0.5);
         }
-        else if(gamepad1.a)
+        else if(gamepad1.right_trigger > 0)
         {
-            s1.setPosition(1);
-            s2.setPosition(1);
+            s1.setPosition(-0.5);
+            s2.setPosition(1.0);
         }
     }
 
