@@ -50,15 +50,18 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
+@TeleOp(name="TankDrive", group="Iterative Opmode")
 //@Disabled
-public class basicdrive extends OpMode
+public class TankDrive extends OpMode
 {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor left1;
+    private DcMotor left2;
     private DcMotor right1;
-
+    private DcMotor right2;
+    private Servo s1;
+    private Servo s2;
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -71,17 +74,19 @@ public class basicdrive extends OpMode
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
         left1  = hardwareMap.get(DcMotor.class, "m1");
-
+        left2  = hardwareMap.get(DcMotor.class, "m4");
         right1 = hardwareMap.get(DcMotor.class, "m2");
-
-
+        right2 = hardwareMap.get(DcMotor.class, "m3");
+        s1 = hardwareMap.get(Servo.class, "s1");
+        s2 = hardwareMap.get(Servo.class, "s2");
 
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         right1.setDirection(DcMotor.Direction.FORWARD);
         left1.setDirection(DcMotor.Direction.REVERSE);
-
+        right2.setDirection(DcMotor.Direction.FORWARD);
+        left2.setDirection(DcMotor.Direction.REVERSE);
 
         // Tell the driver that initialization is complete.
         telemetry.addData("Status", "Initialized");
@@ -108,15 +113,8 @@ public class basicdrive extends OpMode
     @Override
     public void loop() {
         // Setup a variable for each drive wheel to save power level for telemetry
-        double leftPower = gamepad1.left_stick_y;
-        double rightPower = gamepad1.right_stick_y;
-
-        // Choose to drive using either Tank Mode, or POV Mode
-        // Comment out the method that's not used.  The default below is POV.
-
-        // POV Mode uses left stick to go forward, and right stick to turn.
-        // - This uses basic math to combine motions and is easier to drive straight.
-
+        double leftPower = -gamepad1.left_stick_y;
+        double rightPower = -gamepad1.right_stick_y;
 
         // Tank Mode uses one stick to control each wheel.
         // - This requires no math, but it is hard to drive forward slowly and keep straight.
@@ -124,12 +122,24 @@ public class basicdrive extends OpMode
         // rightPower = -gamepad1.right_stick_y ;
 
         // Send calculated power to wheels
-        left1.setPower(-leftPower);
-        right1.setPower(-rightPower);
+        left1.setPower(leftPower);
+        right1.setPower(rightPower);
+        left2.setPower(leftPower);
+        right2.setPower(rightPower);
 
 
 
 
+        if(gamepad1.right_bumper)
+        {
+            s1.setPosition(1.0);
+            s2.setPosition(-0.5);
+        }
+        else if(gamepad1.right_trigger > 0)
+        {
+            s1.setPosition(-0.5);
+            s2.setPosition(1.0);
+        }
     }
 
     /*
