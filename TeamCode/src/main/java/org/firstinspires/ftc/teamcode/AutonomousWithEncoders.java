@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @Autonomous(name="AutoWithEncoders", group="Linear Opmode")
-//@Disabled
+
 public class AutonomousWithEncoders extends LinearOpMode {
 
 

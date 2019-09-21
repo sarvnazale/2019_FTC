@@ -88,7 +88,7 @@ public class TankDrive extends OpMode
         right2.setDirection(DcMotor.Direction.FORWARD);
         left2.setDirection(DcMotor.Direction.REVERSE);
 
-        // Tell the driver that initialization is complete.
+        // Tell the driver that initialization is complete
         telemetry.addData("Status", "Initialized");
     }
 
