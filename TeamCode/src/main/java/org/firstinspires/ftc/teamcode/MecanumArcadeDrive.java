@@ -106,6 +106,7 @@ public class MecanumArcadeDrive extends OpMode {
         m2.setPower(v2);
         m3.setPower(v4);
         m4.setPower(v3);
+        // left stick translates right stick rotates
      }
 
 
