@@ -30,8 +30,7 @@ public class MecanumArcadeDrive extends OpMode {
     Servo s1;
     Servo s2;
     boolean arcadedrive = true;
-    double xr = -gamepad1.right_stick_x;
-    double yr = -gamepad1.right_stick_y;
+
 
     /**
      * runs on initilaization
