@@ -69,8 +69,8 @@ public class MecanumArcadeDrive extends OpMode {
 
     public void arcadeDrive(){
         double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.left_stick_x;
-
+        double turn  =  gamepad1.right_stick_x;
+        double strafe = gamepad1.left_stick_x;
         // define left and right powers
         double leftPower = Range.clip(drive + turn, -1.0, 1.0) ;
         double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
@@ -90,24 +90,23 @@ public class MecanumArcadeDrive extends OpMode {
         m3.setPower(rightPower);
         m4.setPower(leftPower);
 
+        if(strafe > 0){
+            m2.setPower(-strafe);
+            m4.setPower(-strafe);
+
+            m1.setPower(strafe);
+            m3.setPower(strafe);
+        }
+        if(strafe < 0 ){
+            m2.setPower(strafe);
+            m4.setPower(strafe);
+
+            m1.setPower(-strafe);
+            m3.setPower(-strafe);
+        }
     }
 
-    public void mecnumDrive() {
-        // mecnumDrive formula found it from
-        // https://ftcforum.usfirst.org/forum/ftc-technology/android-studio/6361-mecanum-wheels-drive-code-example response number 2
-        double r = Math.hypot(gamepad1.left_stick_x, gamepad1.left_stick_y);
-        double robotAngle = Math.atan2(gamepad1.left_stick_y, gamepad1.left_stick_x) - Math.PI / 4;
-        double rightX = gamepad1.right_stick_x;
-        final double v1 = r * Math.cos(robotAngle) + rightX;
-        final double v2 = r * Math.sin(robotAngle) - rightX;
-        final double v3 = r * Math.sin(robotAngle) + rightX;
-        final double v4 = r * Math.cos(robotAngle) - rightX;
-        m1.setPower(v1);
-        m2.setPower(v2);
-        m3.setPower(v4);
-        m4.setPower(v3);
-        // left stick translates right stick rotates
-     }
+
 
 
 
@@ -134,14 +133,7 @@ public class MecanumArcadeDrive extends OpMode {
         if(arcadedrive){
             arcadeDrive();
         }
-        else if(gamepad1.right_stick_button){
-            arcadedrive = false;
-            mecnumDrive();
 
-        }
-        else if(gamepad1.left_stick_button){
-            arcadedrive = true;
-        }
 
 
         /**
