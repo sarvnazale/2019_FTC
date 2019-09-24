@@ -8,8 +8,8 @@ Purpose: This program creates an arcade drive(Mecanum) and adds servo control th
 Author: Baghbanbashi, Parham
         email: parhambagh@gmail.com
 
-Date: 09/21/2019
-Version: 1.1.1
+Date: 09/24/2019
+Version: 1.2.1
 ----------------------------------------------------------------------------------------------------
 */
 package org.firstinspires.ftc.teamcode;
@@ -127,11 +127,7 @@ public class MecanumArcadeDrive extends OpMode {
         telemetry.addData("servo 1", s1.getPosition());
         telemetry.addData("servo2", s2.getPosition());
 
-        telemetry.addData("Arcade drive",arcadedrive);
-
-        if(arcadedrive){
-            arcadeDrive();
-        }
+        arcadeDrive();
 
 
 
