@@ -97,11 +97,11 @@ public class MecanumArcadeDrive extends OpMode {
             m3.setPower(strafe);
         }
         if(strafe < 0 ){
-            m2.setPower(strafe);
-            m4.setPower(strafe);
+            m2.setPower(-strafe);
+            m4.setPower(-strafe);
 
-            m1.setPower(-strafe);
-            m3.setPower(-strafe);
+            m1.setPower(strafe);
+            m3.setPower(strafe);
         }
     }
 
