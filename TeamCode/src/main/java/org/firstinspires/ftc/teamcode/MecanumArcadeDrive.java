@@ -67,9 +67,9 @@ public class MecanumArcadeDrive extends OpMode {
 
 
     public void arcadeDrive(){
-        double drive = -gamepad1.left_stick_y;
-        double turn  =  gamepad1.right_stick_x;
-        double strafe = gamepad1.left_stick_x;
+        double drive = -gamepad1.right_stick_y;
+        double turn  =  gamepad1.left_stick_x;
+        double strafe = gamepad1.right_stick_x;
         // define left and right powers
         double leftPower = Range.clip(drive + turn, -1.0, 1.0) ;
         double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
