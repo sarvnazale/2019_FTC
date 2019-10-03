@@ -23,10 +23,10 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp
 public class MecanumArcadeDrive extends OpMode {
 
-    DcMotor FrontLefttMotor;
-    DcMotor FrontRightMotor;
-    DcMotor BackRightMotor;
-    DcMotor BackLeftMotor;
+    DcMotor m1;
+    DcMotor m2;
+    DcMotor m3;
+    DcMotor m4;
     Servo s1;
     Servo s2;
     boolean arcadedrive = true;
@@ -40,10 +40,10 @@ public class MecanumArcadeDrive extends OpMode {
         /**
          * define motors
          */
-        BackLeftMotor = hardwareMap.dcMotor.get("m1");
-        BackRightMotor = hardwareMap.dcMotor.get("m2");
-        FrontRightMotor = hardwareMap.dcMotor.get("m3");
-        FrontLefttMotor = hardwareMap.dcMotor.get("m4");
+        m4 = hardwareMap.dcMotor.get("m1");
+        m3 = hardwareMap.dcMotor.get("m2");
+        m2 = hardwareMap.dcMotor.get("m3");
+        m1 = hardwareMap.dcMotor.get("m4");
 
         /**
          * define servos
@@ -60,16 +60,16 @@ public class MecanumArcadeDrive extends OpMode {
          * set left side motors to reverse
          */
 
-        BackLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        m4.setDirection(DcMotor.Direction.REVERSE);
 
 
     }
 
 
     public void arcadeDrive(){
-        double drive = -gamepad1.right_stick_y;
-        double turn  =  gamepad1.left_stick_x;
-        double strafe = gamepad1.right_stick_x;
+        double drive = -gamepad1.left_stick_y;
+        double turn  =  gamepad1.right_stick_x;
+        double strafe = gamepad1.left_stick_x;
         // define left and right powers
         double leftPower = Range.clip(drive + turn, -1.0, 1.0) ;
         double rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
@@ -81,27 +81,27 @@ public class MecanumArcadeDrive extends OpMode {
         /**
          * set power of motors to the gamepad imputs
          */
-        FrontRightMotor.setDirection(DcMotor.Direction.REVERSE);
+        m2.setDirection(DcMotor.Direction.REVERSE);
         //front
-        FrontLefttMotor.setPower(-leftPower);
-        FrontRightMotor.setPower(-rightPower);
+        m1.setPower(-leftPower);
+        m2.setPower(-rightPower);
         //back
-        BackRightMotor.setPower(rightPower);
-        BackLeftMotor.setPower(leftPower);
+        m3.setPower(rightPower);
+        m4.setPower(leftPower);
 
-        if(strafe > 0){
-            FrontRightMotor.setPower(-strafe);
-            BackLeftMotor.setPower(-strafe);
+        if(strafe < 0){
+            m2.setPower(strafe);
+            m4.setPower(-strafe);
 
-            FrontLefttMotor.setPower(strafe);
-            BackRightMotor.setPower(strafe);
+            m1.setPower(-strafe);
+            m3.setPower(strafe);
         }
-        if(strafe < 0 ){
-            FrontRightMotor.setPower(-strafe);
-            BackLeftMotor.setPower(-strafe);
+        if(strafe > 0 ){
+            m2.setPower(-strafe);
+            m4.setPower(strafe);
 
-            FrontLefttMotor.setPower(strafe);
-            BackRightMotor.setPower(strafe);
+            m1.setPower(-strafe);
+            m3.setPower(strafe);
         }
     }
 
@@ -120,8 +120,8 @@ public class MecanumArcadeDrive extends OpMode {
         /**
          * print out right and left motor power
          */
-        telemetry.addData("Rightmoter", FrontRightMotor.getPower());
-        telemetry.addData("Leftmotor", FrontLefttMotor.getPower());
+        telemetry.addData("Rightmoter", m2.getPower());
+        telemetry.addData("Leftmotor", m1.getPower());
 
         //print out servo positons
         telemetry.addData("servo 1", s1.getPosition());
