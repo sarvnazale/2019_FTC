@@ -8,8 +8,8 @@ Purpose: This program creates an arcade drive(Mecanum) and adds servo control th
 Author: Baghbanbashi, Parham
         email: parhambagh@gmail.com
 
-Date: 09/24/2019
-Version: 1.2.1
+Date: 10/3/2019
+Version: 2.0.0
 ----------------------------------------------------------------------------------------------------
 */
 package org.firstinspires.ftc.teamcode;
