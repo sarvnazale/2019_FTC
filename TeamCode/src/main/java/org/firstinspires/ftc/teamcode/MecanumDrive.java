@@ -280,6 +280,7 @@ public class MecanumDrive extends OpMode {
         printStatus();
         setDrivemode();
         activateDrivemode();
+        setpullerServos();
 
     }
 }
