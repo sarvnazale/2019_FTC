@@ -219,7 +219,7 @@ public class MecanumDrive extends OpMode {
     /**
      * print out satus
      */
-     public void printStatus(){
+    public void printStatus(){
          telemetry.addData("Game pad 1 stick status:","-------------------------");
          telemetry.addData("Left stick x", gamepad1.left_stick_x);
          telemetry.addData("Right stick y", gamepad1.right_stick_y);
