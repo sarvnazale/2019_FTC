@@ -81,26 +81,28 @@ public class MecanumArcadeDrive extends OpMode {
         /**
          * set power of motors to the gamepad imputs
          */
-        m2.setDirection(DcMotor.Direction.REVERSE);
+        m1.setDirection(DcMotor.Direction.REVERSE);
         //front
-        m1.setPower(-leftPower);
-        m2.setPower(-rightPower);
+        m1.setPower(leftPower);
+        m2.setPower(rightPower);
         //back
         m3.setPower(rightPower);
         m4.setPower(leftPower);
 
         if(strafe < 0){
-            m2.setPower(strafe);
+            m2.setPower(-strafe);
             m4.setPower(-strafe);
 
-            m1.setPower(-strafe);
+            m1.setPower(strafe);
             m3.setPower(strafe);
         }
+
+
         if(strafe > 0 ){
-            m2.setPower(strafe);
+            m2.setPower(-strafe);
             m4.setPower(-strafe);
 
-            m1.setPower(-strafe);
+            m1.setPower(strafe);
             m3.setPower(strafe);
         }
     }
