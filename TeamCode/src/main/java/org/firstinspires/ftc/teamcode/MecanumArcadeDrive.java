@@ -3,6 +3,7 @@
 Name: MecanumArcadeDrive
 Purpose: This program creates an arcade drive(Mecanum) and adds servo control these servos control
  the robots platform locking mechanism
+ note this is a prototype 
 
 
 Author: Baghbanbashi, Parham
