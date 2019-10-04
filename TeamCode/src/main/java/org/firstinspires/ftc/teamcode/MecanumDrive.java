@@ -19,7 +19,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-import team16488.motors.setpowers.api.driveDistribution;
+
 @TeleOp
 public class MecanumDrive extends OpMode {
 
@@ -79,7 +79,33 @@ public class MecanumDrive extends OpMode {
 
     }
 
+    public void mapHardware(){
+        /**
+         * define motors
+         */
+        FrontLeftMotor = hardwareMap.dcMotor.get("m4");
+        FrontRightMotor = hardwareMap.dcMotor.get("m3");
+        RearRightMotor = hardwareMap.dcMotor.get("m2");
+        RearLeftMotor = hardwareMap.dcMotor.get("m1");
 
+        /**
+         * define servos
+         */
+        RightPullerServo = hardwareMap.servo.get("s1");
+        LeftPullerServo = hardwareMap.servo.get("s2");
+
+        /**
+         * print out status
+         */
+        telemetry.addData("Status:", "Initialized");
+
+        /**
+         * Reverse Approprate Motors
+         */
+        FrontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        RearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+
+    }
 
 
     public void diagonalRightstrafe(double power){
@@ -243,30 +269,8 @@ public class MecanumDrive extends OpMode {
          telemetry.addData("Drive Mode",Drivemode);
      }
     public void init(){
-        /**
-         * define motors
-         */
-        FrontLeftMotor = hardwareMap.dcMotor.get("m4");
-        FrontRightMotor = hardwareMap.dcMotor.get("m3");
-        RearRightMotor = hardwareMap.dcMotor.get("m2");
-        RearLeftMotor = hardwareMap.dcMotor.get("m1");
 
-        /**
-         * define servos
-         */
-        RightPullerServo = hardwareMap.servo.get("s1");
-        LeftPullerServo = hardwareMap.servo.get("s2");
-
-        /**
-         * print out status
-         */
-        telemetry.addData("Status:", "Initialized");
-
-        /**
-         * Reverse Approprate Motors
-         */
-        FrontLeftMotor.setDirection(DcMotor.Direction.REVERSE);
-        RearLeftMotor.setDirection(DcMotor.Direction.REVERSE);
+        mapHardware();
 
         telemetry.addData("Robot Status", "Initalized");
         telemetry.addData("Drive Mode", Drivemode);
@@ -283,4 +287,20 @@ public class MecanumDrive extends OpMode {
         setpullerServos();
 
     }
+    /**
+     * myay
+     * be
+     * used
+     * for
+     * an
+     * api
+     */
+
+
+
+
+
+
+
+
 }
