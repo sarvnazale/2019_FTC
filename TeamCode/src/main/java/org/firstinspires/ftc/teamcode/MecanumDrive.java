@@ -19,7 +19,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-
+import team16488.motors.setpowers.api.driveDistribution;
 @TeleOp
 public class MecanumDrive extends OpMode {
 
@@ -34,7 +34,6 @@ public class MecanumDrive extends OpMode {
     /**
      * runs on initilaization
      */
-
 
     public void setLeftSidePower(double power) {
             FrontLeftMotor.setPower(power);
@@ -80,6 +79,17 @@ public class MecanumDrive extends OpMode {
 
     }
 
+
+
+
+    public void diagonalRightstrafe(double power){
+        setFrontLeftToBottomRightDiagonalPower(power);
+    }
+
+    public void diagonalLeftstrafe(double power){
+        setFrontRightToBottomLeftDiagonalPower(power);
+    }
+
     /**
      * This drive mode is with wide turns and strafing using the arcade drive formula
      */
@@ -92,16 +102,6 @@ public class MecanumDrive extends OpMode {
         strafe(strafeValue);
 
     }
-
-    public void diagonalRightstrafe(double power){
-        setFrontLeftToBottomRightDiagonalPower(power);
-    }
-
-    public void diagonalLeftstrafe(double power){
-        setFrontRightToBottomLeftDiagonalPower(power);
-    }
-
-
 
     /**
      * This dirve mode is with tight turns and strafeing(left and right) without the arcade drive formula
@@ -192,6 +192,21 @@ public class MecanumDrive extends OpMode {
          }
          else{
              telemetry.addData("Please select a Drive mode"," ");
+         }
+     }
+
+     public void setpullerServos(){
+         if(gamepad1.right_bumper == true)
+         {
+             RightPullerServo.setPosition(1.0);
+             LeftPullerServo.setPosition(-0.5);
+         }
+
+         /** set servos positon to 0.5 if button a is presed
+          */
+         if(gamepad1.right_trigger > 0){
+             RightPullerServo.setPosition(-0.5);
+             LeftPullerServo.setPosition(1.0);
          }
      }
 
