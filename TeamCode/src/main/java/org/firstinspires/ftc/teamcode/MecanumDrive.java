@@ -227,8 +227,7 @@ public class MecanumDrive extends OpMode {
          telemetry.addData("Drive Mode","----------------------------------------");
          telemetry.addData("Drive Mode",Drivemode);
      }
-    public void init()
-    {
+    public void init(){
         /**
          * define motors
          */
@@ -261,8 +260,7 @@ public class MecanumDrive extends OpMode {
     /**
      * runs repetedly after person hits play
      */
-    public void loop()
-    {
+    public void loop() {
         telemetry.addData("Robot Status:","Running");
         printStatus();
         setDrivemode();
